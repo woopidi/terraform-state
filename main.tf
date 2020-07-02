@@ -1,10 +1,7 @@
-variable "state_name" {
-  default = "bls-terraform-state"
-}
-
+variable "account_name" {}
 
 resource "aws_dynamodb_table" "terraform-state" {
-  name            = var.state_name
+  name            = var.account_name
   read_capacity   = 20
   write_capacity  = 20
   hash_key        = "LockID"
@@ -15,7 +12,7 @@ resource "aws_dynamodb_table" "terraform-state" {
 }
 
 resource "aws_s3_bucket" "terraform-state" {
-  bucket  = var.state_name
+  bucket  = "${var.account_name}-terraform-state"
   acl     = "private"
   versioning {
     enabled = true

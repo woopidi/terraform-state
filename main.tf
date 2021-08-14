@@ -1,7 +1,7 @@
 variable "account_name" {}
 
 resource "aws_dynamodb_table" "terraform-state" {
-  name            = var.account_name
+  name            = "${var.account_name}-terraform-state"
   read_capacity   = 20
   write_capacity  = 20
   hash_key        = "LockID"
